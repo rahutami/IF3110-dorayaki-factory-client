@@ -23,14 +23,14 @@ function BahanBaku() {
   return (
     <div className="bahan-baku">
       <a href="/bahanbaku/new">
-        <button>Tambah Bahan Baku</button>
+        <button className="red-btn">Tambah Bahan Baku</button>
       </a>
       <table>
         <thead>
           <tr>
-            <th>Nama Bahan</th>
-            <th>Stok</th>
-            <th>Edit</th>
+            <th className="tb-bb-header">Nama Bahan</th>
+            <th className="tb-bb-header">Stok</th>
+            <th className="tb-bb-header">Edit</th>
           </tr>
         </thead>
         <tbody>

@@ -1,28 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { api_base_url } from "../config";
 
 function BahanBakuDetail() {
   const { id } = useParams();
   const [bahanBaku, setBahanBaku] = useState({});
-  const [nama_bahanbaku, setNama] = useState("");
-  const [stok, setStok] = useState(0);
+  // const [nama_bahanbaku, setNama] = useState("");
+  // const [stok, setStok] = useState(0);
+
+  const nama_bahanbaku = useRef("");
+  const stok = useRef(0);
 
   useEffect(async () => {
     const result = await fetch(`${api_base_url}/bahanbaku/${id}`);
     const bahanBakuGet = await result.json();
 
-    setBahanBaku(bahanBakuGet);
+    setBahanBaku({
+      nama_bahanbaku: bahanBakuGet.nama_bahanbaku,
+      stok: bahanBakuGet.stok,
+      satuan: bahanBakuGet.satuan,
+      id: bahanBakuGet.satuan,
+    });
   }, [id]);
 
   async function submitUpdate(e) {
+    const body = {
+      nama_bahanbaku: nama_bahanbaku.current.value,
+      stok: stok.current.value,
+    };
+
     const response = await fetch(`${api_base_url}/bahanbaku/${id}`, {
       method: "put",
-      body: {
-        nama_bahanbaku,
-        stok,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify(body),
     });
+
+    const responseBody = await response.json();
+    if (responseBody.success) {
+      setBahanBaku({
+        nama_bahanbaku: responseBody.nama_bahanbaku,
+        stok: responseBody.stok,
+        satuan: responseBody.satuan,
+        id: responseBody.satuan,
+      });
+    }
   }
 
   if (bahanBaku) {
@@ -45,7 +69,7 @@ function BahanBakuDetail() {
             type="text"
             id="nama_bahanbaku-detail"
             name="nama_bahanbaku"
-            onChange={(e) => setNama(e.target.value)}
+            ref={nama_bahanbaku}
           />
         </p>
         <p>
@@ -57,7 +81,7 @@ function BahanBakuDetail() {
             id="stok-detail"
             name="stok"
             min="0"
-            onChange={(e) => setStok(parseInt(e.target.value))}
+            ref={stok}
           />
           <label htmlFor="stok-detail">{` ${bahanBaku.satuan}`}</label>
         </p>

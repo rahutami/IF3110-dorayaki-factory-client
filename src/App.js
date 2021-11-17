@@ -5,10 +5,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import BahanBaku from "./pages/BahanBaku";
 import BahanBakuDetail from "./pages/BahanBakuDetail";
 import NewBahanBaku from "./pages/NewBahanBaku";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Router>
         <Routes>
           <Route path="/bahanbaku/detail/:id" element={<BahanBakuDetail />} />

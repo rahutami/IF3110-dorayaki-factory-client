@@ -5,6 +5,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --prussian-blue: #1d3557;
+  --celadon-blue: #456b9d;
+  --powder-blue: #a8dadc;
+  --honeydew: #f1faee;
+  --red: #a31420;
 }
 
 code {
@@ -20,4 +25,67 @@ code {
 
 .bahan-baku {
   width: fit-content;
+}
+
+.navbar {
+  background-color: var(--prussian-blue);
+  padding: 15px 40px;
+  display: flex;
+}
+
+.navbar > ul {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar > ul > li > a {
+  color: var(--honeydew);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.bahan-baku {
+  width: 500px;
+  margin: auto;
+  padding: 20px;
+}
+
+.bahan-baku > table {
+  margin-top: 20px;
+}
+
+.tb-bb-body,
+.tb-bb-header {
+  padding: 5px 20px;
+}
+
+.tb-bb-header {
+  background-color: var(--prussian-blue);
+  color: white;
+}
+
+.tb-bb-body {
+  background-color: var(--honeydew);
+  color: var(--prussian-blue);
+}
+
+.tb-bb-body > a {
+  color: var(--prussian-blue);
+}
+
+.red-btn {
+  border: none;
+  padding: 5px 10px;
+  background-color: var(--red);
+  color: var(--honeydew);
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.red-btn:hover {
+  cursor: pointer;
+  background-color: #be2a36;
 }
