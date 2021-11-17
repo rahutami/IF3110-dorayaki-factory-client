@@ -1,8 +1,9 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BahanBaku from "./pages/BahanBaku";
+import Request from "./pages/RequestPage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/bahanbaku" element={<BahanBaku />} />
+          <Route path="/request" element={<Request />} />
         </Routes>
       </Router>
     </div>
