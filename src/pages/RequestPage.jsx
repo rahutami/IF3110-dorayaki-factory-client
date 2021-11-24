@@ -21,13 +21,8 @@ function Request() {
       .then((response) => {
         if (response.status === 200) {
           setRequests(response.data.allRequests);
-          // alert('bisa');
-        }
-        else {
-          // alert('gabisa');
         }
         getRequests();
-
       });
   }
   async function declineRequests(id) {
@@ -36,10 +31,6 @@ function Request() {
       .then((response) => {
         if (response.status === 200) {
           setRequests(response.data.allRequests);
-          // alert('bisa');
-        }
-        else {
-          // alert('gabisa');
         }
         getRequests();
       });
@@ -52,17 +43,10 @@ function Request() {
     container.id_dorayaki = item.id_dorayaki;
     container.jumlah = item.jumlah;
     container.status = item.status;
-    // TODO timestamp belum muncul entah kenapa
-    container.timestamp = item.timestamp;
-    // TODO ganti link untuk accept and decline
+    container.fieldTimestamp = item.timestamp;
     // KAYAKNYA sih kalo accepted gaada lagi tombol accept, kalo udah declined gaada lagi tombol declined.
-    if (item.status === "waiting") {
-      // const urlAccept = `${api_base_url}/requests/accept/` + container.id;
-      // const urlDecline = `${api_base_url}/requests/decline/` + container.id;
-      // const urlUpdate = `${api_base_url}/requests/update/` + container.id;
+    if (container.status === "waiting") {
       container.buttonAction = <React.Fragment><MDBBtn color="green" size="sm" onClick={() => { acceptRequests(container.id) }}>Accept</MDBBtn>< br/><MDBBtn color="red" size="sm" onClick={() => { declineRequests(container.id) }}>Decline</MDBBtn></React.Fragment>;
-      // container.buttonAction = <React.Fragment><MDBBtn color="green" size="sm"><a href={urlAccept}>Accept</a></MDBBtn>< br/><MDBBtn color="red" size="sm" ><a href={urlDecline}>Decline</a></MDBBtn></React.Fragment>;
-      // container.buttonAction = <React.Fragment><MDBBtn color="green" size="sm" onClick={acceptRequests(item.id)}><a href={urlAccept}>Accept</a></MDBBtn>< br/><MDBBtn color="red" size="sm" ><a href={declineRequests(item.id)}>Decline</a></MDBBtn></React.Fragment>;
     }
     else {
       container.buttonAction = "-";
@@ -72,7 +56,6 @@ function Request() {
   completeRow.forEach(element => {
     requestRow.push(element);
   })
-  // console.log(requestRow);
 
   const data = {
     columns: [
@@ -101,10 +84,10 @@ function Request() {
         width: 100
       },
       {
-        label: 'Timestamp',
-        field: 'timetamp',
+        label: 'Request Timestamp',
+        field: 'fieldTimestamp',
         sort: 'asc',
-        width: 100
+        width: 200,
       },    
       {
         label: 'Action',
