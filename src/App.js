@@ -19,7 +19,7 @@ function App() {
           <Route path="/bahanbaku/detail/:id" element={<BahanBakuDetail />} />
           <Route path="/bahanbaku/new" element={<NewBahanBaku />} />
           <Route path="/bahanbaku" element={<BahanBaku />} />
-          <Route path="/request" element={<Request />} />
+          <Route path="/requests" element={<Request />} />
           <Route path="/datatable" element={<DataTablePage />} />
         </Routes>
       </Router>

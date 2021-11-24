@@ -14,7 +14,7 @@ function Navbar() {
           <a href="/resep">Resep</a>
         </li>
         <li>
-          <a href="/request">Request</a>
+          <a href="/requests">Requests</a>
         </li>
       </ul>
     </nav>

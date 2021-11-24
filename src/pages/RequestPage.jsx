@@ -9,13 +9,42 @@ function Request() {
 
   useEffect(() => {
       getRequests();
-
   }, []);
   const getRequests = async () => {
       const response = await axios.get(`${api_base_url}/requests`);
       setRequests(response.data);
   }
-  // console.log(requests);
+
+  async function acceptRequests(id) {
+    await axios
+      .put(`${api_base_url}/requests/accept/${id}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setRequests(response.data.allRequests);
+          // alert('bisa');
+        }
+        else {
+          // alert('gabisa');
+        }
+        getRequests();
+
+      });
+  }
+  async function declineRequests(id) {
+    await axios
+      .put(`${api_base_url}/requests/decline/${id}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setRequests(response.data.allRequests);
+          // alert('bisa');
+        }
+        else {
+          // alert('gabisa');
+        }
+        getRequests();
+      });
+  }
+
   const requestRow = [];
   const completeRow = requests.map(item => {
     const container = {};
@@ -26,8 +55,18 @@ function Request() {
     // TODO timestamp belum muncul entah kenapa
     container.timestamp = item.timestamp;
     // TODO ganti link untuk accept and decline
-    container.buttonAccept = <React.Fragment><MDBBtn color="green" size="sm" ><a href="/request">Accept</a></MDBBtn></React.Fragment>;
-    container.buttonDecline = <React.Fragment><MDBBtn color="red" size="sm" ><a href="/request">Decline</a></MDBBtn></React.Fragment>;
+    // KAYAKNYA sih kalo accepted gaada lagi tombol accept, kalo udah declined gaada lagi tombol declined.
+    if (item.status === "waiting") {
+      // const urlAccept = `${api_base_url}/requests/accept/` + container.id;
+      // const urlDecline = `${api_base_url}/requests/decline/` + container.id;
+      // const urlUpdate = `${api_base_url}/requests/update/` + container.id;
+      container.buttonAction = <React.Fragment><MDBBtn color="green" size="sm" onClick={() => { acceptRequests(container.id) }}>Accept</MDBBtn>< br/><MDBBtn color="red" size="sm" onClick={() => { declineRequests(container.id) }}>Decline</MDBBtn></React.Fragment>;
+      // container.buttonAction = <React.Fragment><MDBBtn color="green" size="sm"><a href={urlAccept}>Accept</a></MDBBtn>< br/><MDBBtn color="red" size="sm" ><a href={urlDecline}>Decline</a></MDBBtn></React.Fragment>;
+      // container.buttonAction = <React.Fragment><MDBBtn color="green" size="sm" onClick={acceptRequests(item.id)}><a href={urlAccept}>Accept</a></MDBBtn>< br/><MDBBtn color="red" size="sm" ><a href={declineRequests(item.id)}>Decline</a></MDBBtn></React.Fragment>;
+    }
+    else {
+      container.buttonAction = "-";
+    }
     return container;
   })
   completeRow.forEach(element => {
@@ -68,17 +107,11 @@ function Request() {
         width: 100
       },    
       {
-        label: 'Accept',
-        field: 'buttonAccept',
+        label: 'Action',
+        field: 'buttonAction',
         // sort: 'asc',
         width: 100
       },
-      {
-        label: 'Decline',
-        field: 'buttonDecline',
-        // sort: 'asc',
-        width: 100
-      }
     ],
     rows: requestRow
   }
@@ -89,37 +122,5 @@ function Request() {
       small
       data={data}
     />);
-  // return(
-  //   <table>
-  //       <thead>
-  //           <tr>
-  //               <td>Request id</td>
-  //               <td>id dorayaki</td>
-  //               <td>Jumlah</td>
-  //               <td>Status</td>
-  //               <td>Action</td>
-  //           </tr>
-  //       </thead>
-  //       <tbody>
-  //     {requests.map((request) => {
-  //       return (
-  //           <tr>
-  //               <td>{request.id}</td>
-  //               <td>{request.id_dorayaki}</td>
-  //               <td>{request.jumlah}</td>
-  //               <td>{request.status}</td>
-  //               <td>
-  //                 {/* TODO ganti path nya */}
-  //                 <a href="/request">Accept</a>
-  //                 <br />
-  //                 <a href="/request">Decline</a>
-
-  //               </td>
-  //           </tr>
-  //       );
-  //     })}
-  //     </tbody>
-  //   </table>
-  // );
 }
 export default Request;
