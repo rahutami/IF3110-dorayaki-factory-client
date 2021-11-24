@@ -1,4 +1,5 @@
 // import logo from "./logo.svg";
+
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -7,6 +8,7 @@ import Request from "./pages/RequestPage";
 import BahanBakuDetail from "./pages/BahanBakuDetail";
 import NewBahanBaku from "./pages/NewBahanBaku";
 import Navbar from "./components/Navbar";
+import DataTablePage from "./pages/DataTablePage";
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           <Route path="/bahanbaku/new" element={<NewBahanBaku />} />
           <Route path="/bahanbaku" element={<BahanBaku />} />
           <Route path="/request" element={<Request />} />
+          <Route path="/datatable" element={<DataTablePage />} />
         </Routes>
       </Router>
     </div>

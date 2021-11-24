@@ -13,6 +13,9 @@ function Navbar() {
         <li>
           <a href="/resep">Resep</a>
         </li>
+        <li>
+          <a href="/request">Request</a>
+        </li>
       </ul>
     </nav>
   );
