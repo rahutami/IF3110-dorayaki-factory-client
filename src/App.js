@@ -14,6 +14,8 @@ import ResepDetail from "./pages/ResepDetail";
 import NewResep from "./pages/NewResep";
 import NewDorayaki from "./pages/NewDorayaki";
 import Dorayaki from "./pages/Dorayaki";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -31,7 +33,8 @@ function App() {
           <Route path="/resep/new" element={<NewResep />} />
           <Route path="/dorayaki/new" element={<NewDorayaki />} />
           <Route path="/dorayaki" element={<Dorayaki />} />
-
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
