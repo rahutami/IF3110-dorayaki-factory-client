@@ -28,7 +28,7 @@ function Navbar() {
               <a href="/dorayaki">Dorayaki</a>
             </li>
             <li onClick={logout}>
-              <a href="#">Logout</a>
+              <a href="/login">Logout</a>
             </li>
           </ul>
         </nav>
