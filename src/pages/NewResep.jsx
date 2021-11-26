@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Navigate } from "react-router";
 import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 
@@ -6,7 +7,7 @@ function NewResep() {
   const id_dorayaki = useRef(0);
   const id_bahanbaku = useRef(0);
   const jumlah = useRef(0);
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn] = React.useContext(TokenContext);
 
   async function submitResep(e) {
     const body = {
@@ -27,6 +28,11 @@ function NewResep() {
 
     const responseBody = await response.json();
   }
+
+  if (!loggedIn) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="new-bahanbaku">
       <p>

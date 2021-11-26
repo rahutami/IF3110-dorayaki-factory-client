@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
+import { Navigate } from "react-router";
 import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 
 function NewDorayaki() {
   const nama = useRef("");
   const deskripsi = useRef("");
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn] = React.useContext(TokenContext);
 
   async function submitDorayaki(e) {
     const body = {
@@ -25,6 +26,11 @@ function NewDorayaki() {
 
     const responseBody = await response.json();
   }
+
+  if (!loggedIn) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="new-bahanbaku">
       {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}

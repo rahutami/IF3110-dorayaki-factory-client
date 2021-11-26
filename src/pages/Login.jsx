@@ -6,13 +6,15 @@ import { Navigate } from "react-router-dom";
 const Login = () => {
   const username = useRef("");
   const password = useRef("");
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn, handleToken, handleLogin] =
+    React.useContext(TokenContext);
 
   async function login(e) {
     const body = {
       username: username.current.value,
       password: password.current.value,
     };
+    console.log(body);
 
     const response = await fetch(`${api_base_url}/auth/login`, {
       method: "post",
@@ -24,10 +26,15 @@ const Login = () => {
     });
 
     const responseBody = await response.json();
-
+    console.log(responseBody);
     if (responseBody.success) {
-      setToken(responseBody.token);
+      handleToken(responseBody.token);
+      handleLogin();
     }
+  }
+
+  if (loggedIn) {
+    return <Navigate to="/requests" />;
   }
 
   return (
@@ -58,6 +65,11 @@ const Login = () => {
             <MDBBtn color="indigo" type="submit" onClick={login}>
               Login
             </MDBBtn>
+            <a href="/register">
+              <MDBBtn color="unique" type="submit">
+                Register
+              </MDBBtn>
+            </a>
           </div>
         </MDBCol>
       </MDBRow>

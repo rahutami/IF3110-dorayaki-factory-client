@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { api_base_url } from "../config";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import ResepRow from "../components/ResepRow";
 import { TokenContext } from "../App";
 
 function ResepDetail() {
   const [resepDetails, setResepDetails] = useState({ detailResep: [] });
   const { id } = useParams();
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn] = React.useContext(TokenContext);
 
   useEffect(() => {
     getResepDetails();
@@ -27,6 +27,10 @@ function ResepDetail() {
   };
 
   const detailResep = resepDetails.detailResep;
+
+  if (!loggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   if (resepDetails) {
     return (

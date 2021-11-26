@@ -23,10 +23,16 @@ function App() {
   const [token, setToken] = useState(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjM3OTA0NjExfQ.HjumPqbgT-bdH6tm4BtvKkvQoe1tsGQDcpc0IHKNamI"
   );
+  const [loggedIn, setLoggedIn] = useState(false);
 
+  const handleLogin = () => setLoggedIn(true);
+  const handleLogout = () => setLoggedIn(false);
+  const handleToken = (newToken) => setToken(newToken);
   return (
     <div className="App">
-      <TokenContext.Provider value={[token, setToken]}>
+      <TokenContext.Provider
+        value={[token, loggedIn, handleToken, handleLogin, handleLogout]}
+      >
         <Navbar />
         <Router>
           <Routes>
@@ -42,6 +48,7 @@ function App() {
             <Route path="/dorayaki" element={<Dorayaki />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Request />} />
           </Routes>
         </Router>
       </TokenContext.Provider>

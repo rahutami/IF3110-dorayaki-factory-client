@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { api_base_url } from "../config";
 import DorayakiRow from "../components/DorayakiRow";
 import { TokenContext } from "../App";
+import { Navigate } from "react-router";
 
 function Dorayaki() {
   const [dorayakis, setDorayakis] = useState([{}]);
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn] = React.useContext(TokenContext);
 
   useEffect(() => {
     getDorayakis();
@@ -23,6 +24,10 @@ function Dorayaki() {
 
     setDorayakis(dorayakiGet);
   };
+
+  if (!loggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="bahan-baku">

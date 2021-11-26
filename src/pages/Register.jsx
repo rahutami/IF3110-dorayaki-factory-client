@@ -8,7 +8,8 @@ const Register = () => {
   const username = useRef("");
   const password = useRef("");
   const email = useRef("");
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn, handleToken, handleLogin, handleLogout] =
+    React.useContext(TokenContext);
 
   async function register(e) {
     const body = {
@@ -29,7 +30,8 @@ const Register = () => {
     const responseBody = await response.json();
 
     if (responseBody.success) {
-      setToken(responseBody.token);
+      handleToken(responseBody.token);
+      handleLogin(true);
     }
   }
   return (
@@ -70,6 +72,11 @@ const Register = () => {
             <MDBBtn color="unique" type="submit">
               Register
             </MDBBtn>
+            <a href="/login">
+              <MDBBtn color="indigo" type="submit">
+                Login
+              </MDBBtn>
+            </a>
           </div>
         </MDBCol>
       </MDBRow>

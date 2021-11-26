@@ -4,10 +4,11 @@ import "mdbreact/dist/css/mdb.css";
 import { api_base_url } from "../config";
 import { TokenContext } from "../App";
 import axios from "axios";
+import { Navigate } from "react-router";
 
 function Request() {
   const [requests, setRequests] = useState([]);
-  const [token, setToken] = React.useContext(TokenContext);
+  const [token, loggedIn] = React.useContext(TokenContext);
 
   useEffect(() => {
     getRequests();
@@ -25,6 +26,10 @@ function Request() {
 
     setRequests(requestGet);
   };
+
+  if (!loggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   async function acceptRequests(id) {
     await axios
