@@ -16,6 +16,9 @@ function Navbar() {
         <li>
           <a href="/requests">Requests</a>
         </li>
+        <li>
+          <a href="/dorayaki">Dorayaki</a>
+        </li>
       </ul>
     </nav>
   );
