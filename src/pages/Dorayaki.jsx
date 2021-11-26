@@ -26,37 +26,35 @@ function Dorayaki() {
     setDorayakis(dorayakiGet);
   };
 
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   return (
-      
-  <MDBContainer>
-    <MDBRow>
+    <MDBContainer>
+      <MDBRow>
         <MDBCol md="6">
-    <h3>Dorayaki yang tersedia saat ini:</h3>
-        <table>
+          <h3>Dorayaki yang tersedia saat ini:</h3>
+          <table>
             <thead>
-            <tr>
+              <tr>
                 <th className="tb-bb-header">ID Dorayaki</th>
                 <th className="tb-bb-header">Nama</th>
                 <th className="tb-bb-header">Deskripsi</th>
-            </tr>
+              </tr>
             </thead>
             <tbody>
-            {dorayakis.map((dorayaki) => {
+              {dorayakis.map((dorayaki) => {
                 return <DorayakiRow dorayaki={dorayaki} />;
-            })}
+              })}
             </tbody>
-        </table>
-        <p>Jika dorayaki belum tersedia, tambah dorayaki sebelum menambah resep:</p>
-        <a href="/dorayaki/new">
-        <button className="red-btn">Tambah Dorayaki</button></a>
-  </MDBCol>
-  </MDBRow>
-  </MDBContainer>
-
+          </table>
+          <p>
+            Jika dorayaki belum tersedia, tambah dorayaki sebelum menambah
+            resep:
+          </p>
+          <a href="/dorayaki/new">
+            <button className="red-btn">Tambah Dorayaki</button>
+          </a>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
   );
 }
 

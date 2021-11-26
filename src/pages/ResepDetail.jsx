@@ -28,10 +28,6 @@ function ResepDetail() {
 
   const detailResep = resepDetails.detailResep;
 
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   if (resepDetails) {
     return (
       <div className="bahanbaku-detail">

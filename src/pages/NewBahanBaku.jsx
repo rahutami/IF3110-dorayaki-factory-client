@@ -31,42 +31,44 @@ function NewBahanBaku() {
     const responseBody = await response.json();
   }
 
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   return (
     <MDBContainer>
-    <MDBRow>
-    <MDBCol md="6">
-      <h1>Tambah Bahan Baku</h1>
-      <p>
-        <label htmlFor="nama_bahanbaku-detail">
-          <strong>Nama:</strong>{" "}
-        </label>
-        <input
-          type="text"
-          id="nama_bahanbaku-new"
-          name="nama_bahanbaku"
-          ref={nama_bahanbaku}
-        />
-      </p>
-      <p>
-        <label htmlFor="stok-new">
-          <strong>Stok:</strong>{" "}
-        </label>
-        <input type="number" id="stok-detail" name="stok" min="0" ref={stok} />
-      </p>
-      <p>
-        <label htmlFor="satuan-new">
-          <strong>Satuan:</strong>{" "}
-        </label>
-        <input type="text" id="satuan-new" name="satuan" ref={satuan} />
-      </p>
-      <MDBBtn onClick={submitBahanBaku}>Submit</MDBBtn>
-      </MDBCol>
+      <MDBRow>
+        <MDBCol md="6">
+          <h1>Tambah Bahan Baku</h1>
+          <p>
+            <label htmlFor="nama_bahanbaku-detail">
+              <strong>Nama:</strong>{" "}
+            </label>
+            <input
+              type="text"
+              id="nama_bahanbaku-new"
+              name="nama_bahanbaku"
+              ref={nama_bahanbaku}
+            />
+          </p>
+          <p>
+            <label htmlFor="stok-new">
+              <strong>Stok:</strong>{" "}
+            </label>
+            <input
+              type="number"
+              id="stok-detail"
+              name="stok"
+              min="0"
+              ref={stok}
+            />
+          </p>
+          <p>
+            <label htmlFor="satuan-new">
+              <strong>Satuan:</strong>{" "}
+            </label>
+            <input type="text" id="satuan-new" name="satuan" ref={satuan} />
+          </p>
+          <MDBBtn onClick={submitBahanBaku}>Submit</MDBBtn>
+        </MDBCol>
       </MDBRow>
-      </MDBContainer>
+    </MDBContainer>
   );
 }
 

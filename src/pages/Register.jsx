@@ -32,6 +32,7 @@ const Register = () => {
     if (responseBody.success) {
       handleToken(responseBody.token);
       handleLogin(true);
+      localStorage.setItem("loggedIn", JSON.stringify(true));
     }
   }
   return (

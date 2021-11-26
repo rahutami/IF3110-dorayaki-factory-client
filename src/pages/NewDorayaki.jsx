@@ -28,35 +28,31 @@ function NewDorayaki() {
     const responseBody = await response.json();
   }
 
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   return (
     <MDBContainer>
-    <MDBRow>
-    <MDBCol md="6">
-        {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}
-      <h1>Tambah Dorayaki</h1>
-      <p>
-        <label htmlFor="nama-new">
-          <strong>Nama Dorayaki:</strong>{" "}
-        </label>
-        <input type="text" id="nama-new" name="nama" ref={nama} />
-      </p>
-      <p>
-        <label htmlFor="deskripsi-new">
-          <strong>Deskripsi:</strong>{" "}
-        </label>
-        <input
-          type="text"
-          id="deskripsi-new"
-          name="deskripsi"
-          ref={deskripsi}
-        />
-      </p>
-      <MDBBtn onClick={submitDorayaki}>Submit</MDBBtn>
-    </MDBCol>
+      <MDBRow>
+        <MDBCol md="6">
+          {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}
+          <h1>Tambah Dorayaki</h1>
+          <p>
+            <label htmlFor="nama-new">
+              <strong>Nama Dorayaki:</strong>{" "}
+            </label>
+            <input type="text" id="nama-new" name="nama" ref={nama} />
+          </p>
+          <p>
+            <label htmlFor="deskripsi-new">
+              <strong>Deskripsi:</strong>{" "}
+            </label>
+            <input
+              type="text"
+              id="deskripsi-new"
+              name="deskripsi"
+              ref={deskripsi}
+            />
+          </p>
+          <MDBBtn onClick={submitDorayaki}>Submit</MDBBtn>
+        </MDBCol>
       </MDBRow>
     </MDBContainer>
   );

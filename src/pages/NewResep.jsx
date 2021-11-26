@@ -30,50 +30,47 @@ function NewResep() {
     const responseBody = await response.json();
   }
 
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   return (
-      
     <MDBContainer>
-        <MDBRow>
+      <MDBRow>
         <MDBCol md="6">
-        <h1>Tambah Resep</h1>
-        <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p>
-      <p>
-        <label htmlFor="id_dorayaki-detail">
-          <strong>ID Dorayaki:</strong>{" "}
-        </label>
-        <input
-          type="text"
-          id="id_dorayaki-new"
-          name="id_dorayaki"
-          ref={id_dorayaki}
-        />
-      </p>
-      <p>
-        <label htmlFor="id_bahanbaku-new">
-          <strong>ID Bahanbaku:</strong>{" "}
-        </label>
-        <input
-          type="number"
-          id="id_bahanbaku-detail"
-          name="id_bahanbaku"
-          min="0"
-          ref={id_bahanbaku}
-        />
-      </p>
-      <p>
-        <label htmlFor="jumlah-new">
-          <strong>Jumlah:</strong>{" "}
-        </label>
-        <input type="text" id="jumlah-new" name="jumlah" ref={jumlah} />
-      </p>
-      <MDBBtn type="submit" onClick={submitResep}>
+          <h1>Tambah Resep</h1>
+          <p>
+            Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)
+          </p>
+          <p>
+            <label htmlFor="id_dorayaki-detail">
+              <strong>ID Dorayaki:</strong>{" "}
+            </label>
+            <input
+              type="text"
+              id="id_dorayaki-new"
+              name="id_dorayaki"
+              ref={id_dorayaki}
+            />
+          </p>
+          <p>
+            <label htmlFor="id_bahanbaku-new">
+              <strong>ID Bahanbaku:</strong>{" "}
+            </label>
+            <input
+              type="number"
+              id="id_bahanbaku-detail"
+              name="id_bahanbaku"
+              min="0"
+              ref={id_bahanbaku}
+            />
+          </p>
+          <p>
+            <label htmlFor="jumlah-new">
+              <strong>Jumlah:</strong>{" "}
+            </label>
+            <input type="text" id="jumlah-new" name="jumlah" ref={jumlah} />
+          </p>
+          <MDBBtn type="submit" onClick={submitResep}>
             Submit
           </MDBBtn>
-      </MDBCol>
+        </MDBCol>
       </MDBRow>
     </MDBContainer>
   );

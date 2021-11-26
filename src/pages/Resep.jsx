@@ -5,8 +5,10 @@ import { Navigate } from "react-router";
 
 function Resep() {
   const [reseps, setReseps] = useState([{}]);
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
+  const loggedIn = JSON.parse(localStorage.getItem("loggedIn"));
+  console.log(loggedIn);
   useEffect(() => {
     getReseps();
   }, []);
@@ -23,10 +25,6 @@ function Resep() {
 
     setReseps(resepGet);
   };
-
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
 
   return (
     <div className="bahan-baku">

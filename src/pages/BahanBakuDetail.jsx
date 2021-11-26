@@ -58,11 +58,6 @@ function BahanBakuDetail() {
       });
     }
   }
-
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   if (bahanBaku) {
     return (
       <div className="bahanbaku-detail">

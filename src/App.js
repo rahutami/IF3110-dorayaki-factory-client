@@ -18,6 +18,11 @@ import Login from "./pages/Login";
 
 export const TokenContext = React.createContext();
 
+if (!localStorage.getItem("token"))
+  localStorage.setItem("token", JSON.stringify(""));
+if (!localStorage.getItem("logedIn"))
+  localStorage.setItem("loggedIn", JSON.stringify(false));
+
 function App() {
   const [token, setToken] = useState(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjM3OTA0NjExfQ.HjumPqbgT-bdH6tm4BtvKkvQoe1tsGQDcpc0IHKNamI"

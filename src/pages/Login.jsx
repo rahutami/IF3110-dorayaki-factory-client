@@ -30,6 +30,7 @@ const Login = () => {
     if (responseBody.success) {
       handleToken(responseBody.token);
       handleLogin();
+      localStorage.setItem("loggedIn", JSON.stringify(true));
     }
   }
 

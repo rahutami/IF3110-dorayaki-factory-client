@@ -27,10 +27,6 @@ function Request() {
     setRequests(requestGet);
   };
 
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
-
   async function acceptRequests(id) {
     await axios
       .put(
