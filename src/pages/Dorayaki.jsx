@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api_base_url } from "../config";
 import axios from "axios";
+import DorayakiRow from "../components/DorayakiRow";
 
 function Dorayaki() {
   const [dorayakis, setDorayakis] = useState([{}]);
@@ -14,11 +15,25 @@ function Dorayaki() {
   }
 
   return (
+      
   <div className="bahan-baku">
     <h1>Dorayaki yang tersedia saat ini:</h1>
-             {dorayakis.map((dorayaki) => {
-            return <h1>{dorayaki.id}. {dorayaki.nama}</h1>;
-           })}
+
+    <table>
+        <thead>
+          <tr>
+            <th className="tb-bb-header">ID Dorayaki</th>
+            <th className="tb-bb-header">Nama</th>
+            <th className="tb-bb-header">Deskripsi</th>
+          </tr>
+        </thead>
+        <tbody>
+        {dorayakis.map((dorayaki) => {
+            return <DorayakiRow dorayaki={dorayaki} />;
+        })}
+        </tbody>
+      </table>
+             
 
         <p>Jika dorayaki belum tersedia, tambah dorayaki sebelum menambah resep:</p>
         <a href="/dorayaki/new">
