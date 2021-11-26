@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { api_base_url } from "../config";
-import axios from "axios";
 import DorayakiRow from "../components/DorayakiRow";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { TokenContext } from "../App";
 
 function Dorayaki() {
   const [dorayakis, setDorayakis] = useState([{}]);
+  const [token, setToken] = React.useContext(TokenContext);
 
   useEffect(() => {
     getDorayakis();
   }, []);
   const getDorayakis = async () => {
-    const response = await axios.get(`${api_base_url}/dorayaki`);
-    setDorayakis(response.data);
-  }
+    const response = await fetch(`${api_base_url}/dorayaki`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const dorayakiGet = await response.json();
+
+    setDorayakis(dorayakiGet);
+  };
 
   return (
       

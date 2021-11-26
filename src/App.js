@@ -1,7 +1,7 @@
 // import logo from "./logo.svg";
 
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BahanBaku from "./pages/BahanBaku";
 import Request from "./pages/RequestPage";
@@ -16,25 +16,33 @@ import Dorayaki from "./pages/Dorayaki";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
+export const TokenContext = React.createContext();
+
 function App() {
+  const [token, setToken] = useState(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjM3OTA0NjExfQ.HjumPqbgT-bdH6tm4BtvKkvQoe1tsGQDcpc0IHKNamI"
+  );
+
   return (
     <div className="App">
-      <Navbar />
-      <Router>
-        <Routes>
-          <Route path="/bahanbaku/detail/:id" element={<BahanBakuDetail />} />
-          <Route path="/bahanbaku/new" element={<NewBahanBaku />} />
-          <Route path="/bahanbaku" element={<BahanBaku />} />
-          <Route path="/requests" element={<Request />} />
-          <Route path="/resep" element={<Resep/>} />
-          <Route path="/resep/detail/:id" element={<ResepDetail />} />
-          <Route path="/resep/new" element={<NewResep />} />
-          <Route path="/dorayaki/new" element={<NewDorayaki />} />
-          <Route path="/dorayaki" element={<Dorayaki />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Router>
+      <TokenContext.Provider value={[token, setToken]}>
+        <Navbar />
+        <Router>
+          <Routes>
+            <Route path="/bahanbaku/detail/:id" element={<BahanBakuDetail />} />
+            <Route path="/bahanbaku/new" element={<NewBahanBaku />} />
+            <Route path="/bahanbaku" element={<BahanBaku />} />
+            <Route path="/requests" element={<Request />} />
+            <Route path="/resep" element={<Resep />} />
+            <Route path="/resep/detail/:id" element={<ResepDetail />} />
+            <Route path="/resep/new" element={<NewResep />} />
+            <Route path="/dorayaki/new" element={<NewDorayaki />} />
+            <Route path="/dorayaki" element={<Dorayaki />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </TokenContext.Provider>
     </div>
   );
 }

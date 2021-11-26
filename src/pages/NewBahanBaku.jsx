@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 
@@ -7,6 +8,7 @@ function NewBahanBaku() {
   const nama_bahanbaku = useRef("");
   const stok = useRef(0);
   const satuan = useRef("");
+  const [token, setToken] = React.useContext(TokenContext);
 
   async function submitBahanBaku(e) {
     const body = {
@@ -20,6 +22,7 @@ function NewBahanBaku() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });

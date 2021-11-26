@@ -1,10 +1,12 @@
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import React, { useRef } from "react";
+import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 
 function NewDorayaki() {
   const nama = useRef("");
   const deskripsi = useRef("");
+  const [token, setToken] = React.useContext(TokenContext);
 
   async function submitDorayaki(e) {
     const body = {
@@ -17,6 +19,7 @@ function NewDorayaki() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -39,7 +42,12 @@ function NewDorayaki() {
         <label htmlFor="deskripsi-new">
           <strong>Deskripsi:</strong>{" "}
         </label>
-        <input type="text" id="deskripsi-new" name="deskripsi" ref={deskripsi} />
+        <input
+          type="text"
+          id="deskripsi-new"
+          name="deskripsi"
+          ref={deskripsi}
+        />
       </p>
       <MDBBtn onClick={submitDorayaki}>Submit</MDBBtn>
     </MDBCol>
