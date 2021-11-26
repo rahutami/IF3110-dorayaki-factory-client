@@ -8,7 +8,7 @@ function NewResep() {
   const id_dorayaki = useRef(0);
   const id_bahanbaku = useRef(0);
   const jumlah = useRef(0);
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   async function submitResep(e) {
     const body = {

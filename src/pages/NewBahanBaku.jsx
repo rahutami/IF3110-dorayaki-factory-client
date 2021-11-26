@@ -9,7 +9,7 @@ function NewBahanBaku() {
   const nama_bahanbaku = useRef("");
   const stok = useRef(0);
   const satuan = useRef("");
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   async function submitBahanBaku(e) {
     const body = {

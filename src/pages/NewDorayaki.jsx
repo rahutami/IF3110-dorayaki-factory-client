@@ -7,7 +7,7 @@ import { api_base_url } from "../config";
 function NewDorayaki() {
   const nama = useRef("");
   const deskripsi = useRef("");
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   async function submitDorayaki(e) {
     const body = {

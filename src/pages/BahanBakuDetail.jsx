@@ -11,7 +11,7 @@ function BahanBakuDetail() {
 
   const nama_bahanbaku = useRef("");
   const stok = useRef(0);
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   useEffect(async () => {
     const result = await fetch(`${api_base_url}/bahanbaku/${id}`, {

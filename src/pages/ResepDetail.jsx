@@ -7,7 +7,7 @@ import { TokenContext } from "../App";
 function ResepDetail() {
   const [resepDetails, setResepDetails] = useState({ detailResep: [] });
   const { id } = useParams();
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   useEffect(() => {
     getResepDetails();

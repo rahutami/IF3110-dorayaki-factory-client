@@ -6,7 +6,7 @@ import { api_base_url } from "../config";
 
 function BahanBaku() {
   const [bahanBakus, setBahanBakus] = useState([{}]);
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   useEffect(async () => {
     const result = await fetch(`${api_base_url}/bahanbaku`, {
@@ -21,10 +21,6 @@ function BahanBaku() {
 
     setBahanBakus(bahanBakuGet);
   }, []);
-
-  if (!loggedIn) {
-    return <Navigate to="/login" />;
-  }
 
   return (
     <div className="bahan-baku">

@@ -8,7 +8,7 @@ import { Navigate } from "react-router";
 
 function Request() {
   const [requests, setRequests] = useState([]);
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   useEffect(() => {
     getRequests();

@@ -7,7 +7,7 @@ function Navbar() {
   const logout = (e) => {
     handleLogout();
   };
-  if (loggedIn) {
+  if (true) {
     return (
       <div>
         <nav className="navbar">

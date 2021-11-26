@@ -7,7 +7,7 @@ import { Navigate } from "react-router";
 
 function Dorayaki() {
   const [dorayakis, setDorayakis] = useState([{}]);
-  const [token, loggedIn] = React.useContext(TokenContext);
+  const [token] = React.useContext(TokenContext);
 
   useEffect(() => {
     getDorayakis();
