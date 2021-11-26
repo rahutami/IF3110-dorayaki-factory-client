@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { TokenContext } from "../App";
 import BahanBakuRow from "../components/BahanBakuRow";
 import { api_base_url } from "../config";
 
-const dbBahanBaku = [
-  { id: 1, nama_bahanbaku: "garam", stok: 200, satuan: "gram" },
-  { id: 2, nama_bahanbaku: "gula", stok: 200, satuan: "gram" },
-  { id: 3, nama_bahanbaku: "telur", stok: 20, satuan: "butir" },
-  { id: 4, nama_bahanbaku: "stroberi", stok: 200, satuan: "buah" },
-];
-
 function BahanBaku() {
   const [bahanBakus, setBahanBakus] = useState([{}]);
+  const [token, setToken] = React.useContext(TokenContext);
 
   useEffect(async () => {
-    const result = await fetch(`${api_base_url}/bahanbaku`);
+    const result = await fetch(`${api_base_url}/bahanbaku`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const bahanBakuGet = await result.json();
 
     setBahanBakus(bahanBakuGet);
-    console.log(bahanBakus);
   }, []);
 
   return (

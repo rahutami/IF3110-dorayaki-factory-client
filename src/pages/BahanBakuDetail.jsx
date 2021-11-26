@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
+import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 
 function BahanBakuDetail() {
@@ -10,9 +11,17 @@ function BahanBakuDetail() {
 
   const nama_bahanbaku = useRef("");
   const stok = useRef(0);
+  const [token, setToken] = React.useContext(TokenContext);
 
   useEffect(async () => {
-    const result = await fetch(`${api_base_url}/bahanbaku/${id}`);
+    const result = await fetch(`${api_base_url}/bahanbaku/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const bahanBakuGet = await result.json();
 
     setBahanBaku({
@@ -34,6 +43,7 @@ function BahanBakuDetail() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });

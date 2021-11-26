@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
+import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 
 function NewResep() {
   const id_dorayaki = useRef(0);
   const id_bahanbaku = useRef(0);
   const jumlah = useRef(0);
+  const [token, setToken] = React.useContext(TokenContext);
 
   async function submitResep(e) {
     const body = {
@@ -18,6 +20,7 @@ function NewResep() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -26,8 +29,9 @@ function NewResep() {
   }
   return (
     <div className="new-bahanbaku">
-
-        <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p>
+      <p>
+        Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)
+      </p>
       <p>
         <label htmlFor="id_dorayaki-detail">
           <strong>ID Dorayaki:</strong>{" "}
@@ -43,7 +47,13 @@ function NewResep() {
         <label htmlFor="id_bahanbaku-new">
           <strong>ID Bahanbaku:</strong>{" "}
         </label>
-        <input type="number" id="id_bahanbaku-detail" name="id_bahanbaku" min="0" ref={id_bahanbaku} />
+        <input
+          type="number"
+          id="id_bahanbaku-detail"
+          name="id_bahanbaku"
+          min="0"
+          ref={id_bahanbaku}
+        />
       </p>
       <p>
         <label htmlFor="jumlah-new">

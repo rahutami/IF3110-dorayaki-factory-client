@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
+import { TokenContext } from "../App";
 import { api_base_url } from "../config";
 
 function NewDorayaki() {
   const nama = useRef("");
   const deskripsi = useRef("");
+  const [token, setToken] = React.useContext(TokenContext);
 
   async function submitDorayaki(e) {
     const body = {
@@ -16,6 +18,7 @@ function NewDorayaki() {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(body),
     });
@@ -24,8 +27,7 @@ function NewDorayaki() {
   }
   return (
     <div className="new-bahanbaku">
-
-        {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}
+      {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}
       <p>
         <label htmlFor="nama-new">
           <strong>Nama Dorayaki:</strong>{" "}
@@ -36,7 +38,12 @@ function NewDorayaki() {
         <label htmlFor="deskripsi-new">
           <strong>Deskripsi:</strong>{" "}
         </label>
-        <input type="text" id="deskripsi-new" name="deskripsi" ref={deskripsi} />
+        <input
+          type="text"
+          id="deskripsi-new"
+          name="deskripsi"
+          ref={deskripsi}
+        />
       </p>
       <button onClick={submitDorayaki}>Submit</button>
     </div>

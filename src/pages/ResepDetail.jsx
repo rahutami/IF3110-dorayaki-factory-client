@@ -1,29 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { api_base_url } from "../config";
-import axios from "axios";
 import { useParams } from "react-router";
 import ResepRow from "../components/ResepRow";
+import { TokenContext } from "../App";
 
 function ResepDetail() {
-  const [resepDetails, setResepDetails] = useState({detailResep:[]});
+  const [resepDetails, setResepDetails] = useState({ detailResep: [] });
   const { id } = useParams();
+  const [token, setToken] = React.useContext(TokenContext);
 
   useEffect(() => {
-      getResepDetails();
+    getResepDetails();
   }, []);
   const getResepDetails = async () => {
-      const response = await axios.get(`${api_base_url}/resep/${id}`);
-      setResepDetails(response.data);
-  }
+    const response = await fetch(`${api_base_url}/resep/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const resepGet = await response.json();
+
+    setResepDetails(resepGet);
+  };
 
   const detailResep = resepDetails.detailResep;
-
 
   if (resepDetails) {
     return (
       <div className="bahanbaku-detail">
         <h1>Detail Resep</h1>
-        <h2>Dorayaki {resepDetails.namaDorayaki} (ID: {resepDetails.idDorayaki})</h2>
+        <h2>
+          Dorayaki {resepDetails.namaDorayaki} (ID: {resepDetails.idDorayaki})
+        </h2>
         <table>
           <thead>
             <tr>
@@ -33,16 +44,14 @@ function ResepDetail() {
             </tr>
           </thead>
           <tbody>
-            {
-            detailResep.map((element) => {
+            {detailResep.map((element) => {
               return <ResepRow entry={element} />;
             })}
           </tbody>
         </table>
       </div>
-     );
-  }
-  else {
+    );
+  } else {
     return (
       <div className="bahanbaku-detail">
         <p>
@@ -51,6 +60,5 @@ function ResepDetail() {
       </div>
     );
   }
-
 }
 export default ResepDetail;
