@@ -8,7 +8,6 @@ import Request from "./pages/RequestPage";
 import BahanBakuDetail from "./pages/BahanBakuDetail";
 import NewBahanBaku from "./pages/NewBahanBaku";
 import Navbar from "./components/Navbar";
-import DataTablePage from "./pages/DataTablePage";
 import Resep from "./pages/Resep";
 import ResepDetail from "./pages/ResepDetail";
 import NewResep from "./pages/NewResep";
@@ -40,7 +39,6 @@ function App() {
             <Route path="/bahanbaku/new" element={<NewBahanBaku />} />
             <Route path="/bahanbaku" element={<BahanBaku />} />
             <Route path="/requests" element={<Request />} />
-            <Route path="/datatable" element={<DataTablePage />} />
             <Route path="/resep" element={<Resep />} />
             <Route path="/resep/detail/:id" element={<ResepDetail />} />
             <Route path="/resep/new" element={<NewResep />} />

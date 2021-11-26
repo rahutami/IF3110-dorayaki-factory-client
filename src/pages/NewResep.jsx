@@ -1,3 +1,4 @@
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import React, { useRef } from "react";
 import { Navigate } from "react-router";
 import { TokenContext } from "../App";
@@ -34,10 +35,12 @@ function NewResep() {
   }
 
   return (
-    <div className="new-bahanbaku">
-      <p>
-        Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)
-      </p>
+      
+    <MDBContainer>
+        <MDBRow>
+        <MDBCol md="6">
+        <h1>Tambah Resep</h1>
+        <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p>
       <p>
         <label htmlFor="id_dorayaki-detail">
           <strong>ID Dorayaki:</strong>{" "}
@@ -67,8 +70,12 @@ function NewResep() {
         </label>
         <input type="text" id="jumlah-new" name="jumlah" ref={jumlah} />
       </p>
-      <button onClick={submitResep}>Submit</button>
-    </div>
+      <MDBBtn type="submit" onClick={submitResep}>
+            Submit
+          </MDBBtn>
+      </MDBCol>
+      </MDBRow>
+    </MDBContainer>
   );
 }
 

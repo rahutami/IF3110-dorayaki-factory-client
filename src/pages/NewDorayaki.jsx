@@ -1,3 +1,4 @@
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import React, { useRef } from "react";
 import { Navigate } from "react-router";
 import { TokenContext } from "../App";
@@ -32,8 +33,11 @@ function NewDorayaki() {
   }
 
   return (
-    <div className="new-bahanbaku">
-      {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}
+    <MDBContainer>
+    <MDBRow>
+    <MDBCol md="6">
+        {/* <p>Note: ID Dorayaki harus valid (sudah tersedia di halaman sebelumnya)</p> */}
+      <h1>Tambah Dorayaki</h1>
       <p>
         <label htmlFor="nama-new">
           <strong>Nama Dorayaki:</strong>{" "}
@@ -51,8 +55,10 @@ function NewDorayaki() {
           ref={deskripsi}
         />
       </p>
-      <button onClick={submitDorayaki}>Submit</button>
-    </div>
+      <MDBBtn onClick={submitDorayaki}>Submit</MDBBtn>
+    </MDBCol>
+      </MDBRow>
+    </MDBContainer>
   );
 }
 

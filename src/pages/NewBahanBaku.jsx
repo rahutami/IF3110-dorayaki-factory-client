@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Navigate } from "react-router";
 import { TokenContext } from "../App";
 import { api_base_url } from "../config";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 
 // Probably need to use fetch
 function NewBahanBaku() {
@@ -35,7 +36,10 @@ function NewBahanBaku() {
   }
 
   return (
-    <div className="new-bahanbaku">
+    <MDBContainer>
+    <MDBRow>
+    <MDBCol md="6">
+      <h1>Tambah Bahan Baku</h1>
       <p>
         <label htmlFor="nama_bahanbaku-detail">
           <strong>Nama:</strong>{" "}
@@ -59,8 +63,10 @@ function NewBahanBaku() {
         </label>
         <input type="text" id="satuan-new" name="satuan" ref={satuan} />
       </p>
-      <button onClick={submitBahanBaku}>Submit</button>
-    </div>
+      <MDBBtn onClick={submitBahanBaku}>Submit</MDBBtn>
+      </MDBCol>
+      </MDBRow>
+      </MDBContainer>
   );
 }
 
